@@ -1,20 +1,13 @@
 <template>
-<div class="status">
-    Order status
-</div>
+  <div class="status">Order status</div>
 </template>
 <script>
 export default {
-    data: () => ({
+  data: () => ({}),
 
-    }),
-    
-    methods: {
-
-    }
-}
+  methods: {}
+};
 </script>
 
 <style lang="scss" scoped>
-
 </style>
