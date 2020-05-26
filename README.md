@@ -1,6 +1,6 @@
 # Grupparbete - AirBean - Smart Rangers
 
-Niklas Palm - Robert Pettersson Svensson - Joel Ståldahl
+**Niklas Palm - Robert Pettersson Svensson - Joel Ståldahl**
 
 Du ska bygga en webbapp där du kan beställa kaffe och få den levererad via drönare (drönare ingår ej i uppgiften).
 
