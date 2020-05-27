@@ -2,9 +2,10 @@
   <div class="menu">
     <top />
     <h1>Menu</h1>
-    <div class="list-wrapper">
-      <MenuArticle
-      v-for="article in articles"
+    <img src="@/assets/graphics/loader.png" v-if="loading">
+    <div v-else class="list-wrapper">
+      <menuArticle
+      v-for="article in menuArticles"
       :key="article.id"
       :article="article"
       v:style="margin-bottom: 10px"
@@ -14,9 +15,9 @@
   </div>
 </template>
 <script>
-import Top from "../components/Top";
-import Bottom from "../components/Bottom";
-import MenuArticle from "../components/MenuArticle";
+import Top from "@/components/Top";
+import Bottom from "@/components/Bottom";
+import MenuArticle from "@/components/MenuArticle";
 
 export default {
   components: {
@@ -27,15 +28,20 @@ export default {
 
   data() {
     return {
-
+      loading: false
     }
   },
 
   methods: {},
   computed:{
-    articles(){
-      return this.$store.getters.getAllProducts
+    menuArticles(){
+      return this.$store.state.menu
     }
+  },
+  async created(){
+    this.loading = true;
+    await this.$store.dispatch('loadMenu')
+      this.loading = false
   }
 };
 </script>
