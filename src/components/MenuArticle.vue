@@ -38,19 +38,28 @@ p, h2 {
     text-align: left
 }
 
+h2 {
+    white-space: nowrap;
+}
+
 .menu-article{
     display: flex;
     justify-content: space-between;
     box-sizing: border-box;
     margin-bottom: 20px;
 
-    .add-to-cart{
-        width: 2.5rem;
-        height: 2.5rem;
+    button.add-to-cart{
+        min-width: 2rem;
+        width: 2rem;
+        height: 2rem;
+        // min-height: 2rem;
         background-color: $secondary-color;
         border: none;
         border-radius: 50%;
         margin: 0 20px 0 0;
+        display: flex;
+        align-items: center;
+        justify-content: center;
 
         img{
             width:60%;
