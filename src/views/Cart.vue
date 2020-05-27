@@ -1,20 +1,13 @@
 <template>
-<div class="cart">
-    Shopping Cart
-</div>
+  <div class="cart">Shopping Cart</div>
 </template>
 <script>
 export default {
-    data: () => ({
+  data: () => ({}),
 
-    }),
-    
-    methods: {
-
-    }
-}
+  methods: {}
+};
 </script>
 
 <style lang="scss" scoped>
-
 </style>

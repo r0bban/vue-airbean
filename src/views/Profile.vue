@@ -1,20 +1,13 @@
 <template>
-<div class="profile">
-    Profile Page
-</div>
+  <div class="profile">Profile Page</div>
 </template>
 <script>
 export default {
-    data: () => ({
+  data: () => ({}),
 
-    }),
-    
-    methods: {
-
-    }
-}
+  methods: {}
+};
 </script>
 
 <style lang="scss" scoped>
-
 </style>
