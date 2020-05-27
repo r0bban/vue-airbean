@@ -6,9 +6,13 @@ Vue.use(Vuex)
 
 export default new Vuex.Store({
   state: {
-    menu: CoffeMenu.menu
+    cart:[],
+    menu: CoffeMenu.menu,
   },
   mutations: {
+    addProductToCart(state, payload) {
+      state.cart.push(payload)
+    },
   },
   actions: {
   },
