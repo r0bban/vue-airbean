@@ -51,10 +51,8 @@ export default {
   justify-content: space-around;
 }
 .coolBtn {
-  font-size: 1rem;
-  height: 3rem;
-  width: 6rem;
-  background: white;
+  
+  
 }
 .ordernumberAndIcon img {
   margin: 2rem 0 0 0;

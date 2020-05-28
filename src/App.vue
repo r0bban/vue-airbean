@@ -37,6 +37,26 @@ body {
   p{
     font-family: $secondary-font;
   }
+
+  button:not(.add-to-cart){
+    padding-left: 2.5rem;
+    padding-right: 2.5rem;
+    height: 3rem;
+    border: 0;
+    border-radius: 50px;
+    font: 700 1.5rem $secondary-font;
+    color: $secondary-color;
+    background: $primary-color; 
+
+    
+
+  }
+  .dark:not(.add-to-cart) {
+      color: $primary-color;
+      background: $secondary-color;
+    }
+  
+  
   
 }
 </style>

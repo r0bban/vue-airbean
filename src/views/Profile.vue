@@ -90,7 +90,7 @@ export default {
         },
       ]
     },
-    loggedIn: true //change to true during development
+    loggedIn: false //change to true during development
   }),
 
   methods: {

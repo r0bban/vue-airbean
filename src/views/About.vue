@@ -41,7 +41,7 @@ export default {
   transform: translateY(1rem);
 }
 p {
-  font-size: 0.7rem;
+  font-size: 1rem;
 }
 
 .about-container {
