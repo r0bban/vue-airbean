@@ -21,7 +21,6 @@
         <label for="gdpr">GDPR ok!</label>
       </div>
       <br />
-      {{newUser}}
       <button @click="handleRequest">Brew me a cup!</button>
     </div>
   </article>

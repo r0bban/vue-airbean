@@ -96,10 +96,8 @@ export default {
   methods: {
     test(user) {
       // document.getElementById("login").style.height = "0%";
-
       this.user = user;
       this.loggedIn = true;
-      console.log("click registered");
     }
   }
 };

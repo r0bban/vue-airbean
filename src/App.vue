@@ -17,13 +17,15 @@ export default {
 
 
 <style lang="scss">
+@import "./assets/scss/_variables.scss";
+
 body {
   margin: 0;
   min-width: 375px;
 }
 
 #app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
+  font-family: $primary-font;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
@@ -31,6 +33,10 @@ body {
   padding: 0;
   margin: 0;
   position: relative;
+
+  p{
+    font-family: $secondary-font;
+  }
   
 }
 </style>

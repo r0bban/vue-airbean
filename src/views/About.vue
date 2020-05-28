@@ -43,6 +43,7 @@ export default {
 p {
   font-size: 0.7rem;
 }
+
 .about-container {
   margin: 0rem 2rem 2rem 2rem;
   text-align: left;
