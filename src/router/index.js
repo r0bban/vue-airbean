@@ -2,7 +2,7 @@ import Vue from 'vue'
 import VueRouter from 'vue-router'
 import Landing from '../views/Landing.vue'
 import About from '../views/About.vue'
-import Cart from '../views/Cart.vue'
+// import Cart from '../views/Cart.vue'
 import Menu from '../views/Menu.vue'
 import Profile from '../views/Profile.vue'
 import Status from '../views/Status.vue'
@@ -28,7 +28,8 @@ Vue.use(VueRouter)
   {
     path: '/cart',
     name: 'Cart',
-    component: Cart
+    component: Menu,
+    props: {showCart: true},
   },
   {
     path: '/profile',
