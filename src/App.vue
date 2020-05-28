@@ -17,13 +17,15 @@ export default {
 
 
 <style lang="scss">
+@import "./assets/scss/_variables.scss";
+
 body {
   margin: 0;
   min-width: 375px;
 }
 
 #app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
+  font-family: $primary-font;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
@@ -31,6 +33,30 @@ body {
   padding: 0;
   margin: 0;
   position: relative;
+
+  p{
+    font-family: $secondary-font;
+  }
+
+  button:not(.add-to-cart){
+    padding-left: 2.5rem;
+    padding-right: 2.5rem;
+    height: 3rem;
+    border: 0;
+    border-radius: 50px;
+    font: 700 1.5rem $secondary-font;
+    color: $secondary-color;
+    background: $primary-color; 
+
+    
+
+  }
+  .dark:not(.add-to-cart) {
+      color: $primary-color;
+      background: $secondary-color;
+    }
+  
+  
   
 }
 </style>

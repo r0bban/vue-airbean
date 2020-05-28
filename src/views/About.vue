@@ -41,8 +41,9 @@ export default {
   transform: translateY(1rem);
 }
 p {
-  font-size: 0.7rem;
+  font-size: 1rem;
 }
+
 .about-container {
   margin: 0rem 2rem 2rem 2rem;
   text-align: left;
