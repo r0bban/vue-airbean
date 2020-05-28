@@ -9,7 +9,7 @@
         <h1>Din beställning är på väg!</h1>
         <p><strong>{{getDeliverytime}}</strong> minuter</p>
       </div>
-      <button class="coolBtn" @click="gotoProfile">Ok, cool!</button>
+      <button class="coolBtn myButton" @click="gotoProfile">Ok, cool!</button>
     </div>
   </div>
 </template>

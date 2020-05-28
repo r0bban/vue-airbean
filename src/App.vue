@@ -38,7 +38,7 @@ body {
     font-family: $secondary-font;
   }
 
-  button:not(.add-to-cart){
+  .myButton{
     padding-left: 2.5rem;
     padding-right: 2.5rem;
     height: 3rem;
