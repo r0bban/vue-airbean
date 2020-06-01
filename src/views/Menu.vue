@@ -66,9 +66,10 @@ export default {
   }
 
   .bottom {
-    position: fixed;
-    bottom: 0;
-    transform: translateY(1rem);
+    position: relative;
+    // bottom: 0;
+    // transform: translateY(1rem);
+    // overflow: hidden;
   }
 }
 </style>

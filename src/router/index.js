@@ -11,6 +11,10 @@ Vue.use(VueRouter)
 
   const routes = [
   {
+    path: '/',
+    redirect: {name: 'Landing'},
+  },
+  {
     path: '/landing',
     name: 'Landing',
     component: Landing

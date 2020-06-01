@@ -19,9 +19,10 @@ export default {
 <style lang="scss">
 @import "./assets/scss/_variables.scss";
 
-body {
+body, html {
   margin: 0;
-  min-width: 375px;
+  padding: 0;
+  min-width: 320px;
 }
 
 #app {

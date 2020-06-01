@@ -38,8 +38,13 @@ p, h2 {
     text-align: left
 }
 
-h2 {
+h2.article-title {
+    padding-right: 0.3rem;
+}
+
+h2.article-price {
     white-space: nowrap;
+    align-self: flex-start;
 }
 
 .menu-article{
@@ -47,6 +52,7 @@ h2 {
     justify-content: space-between;
     box-sizing: border-box;
     margin-bottom: 20px;
+    align-items: center;
 
     button.add-to-cart{
         min-width: 2rem;

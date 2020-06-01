@@ -1,6 +1,6 @@
 import Vue from 'vue'
 import Vuex from 'vuex'
-import API from '@/api/mock'
+import API from '@/api/server'
 
 Vue.use(Vuex)
 
