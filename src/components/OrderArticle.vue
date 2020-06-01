@@ -1,14 +1,24 @@
 <template>
-<article class="menu-article">
+<article class="order-article">
     <button class="add-to-cart"
     v-on:click="addToCart">
         <img src="@/assets/graphics/add.svg" alt="Add to cart">
     </button>
     <div class="text-wrapper">
-        <h2 class="article-title">{{article.title}}</h2>
-        <p class="article-desc">{{article.desc}}</p>
+        <div class="article-and-price">
+            <h2 class="article-title">{{article.title}}</h2>
+            <p class="article-price">{{article.price}} kr</p>
+        </div>
+        <div class="amount">
+            <button class="increase-amount" v-on:click="increaseAmount">
+                <img src="@/assets/graphics/arrow-up.svg" alt="arrow-up">
+            </button>
+            <p>{{amount}}</p>
+            <button class="reduce-amount" v-on:click="reduceAmount">
+                <img src="@/assets/graphics/arrow-down.svg" alt="arrow-down">
+            </button>
+        </div>
     </div>
-    <h2 class="article-price">{{article.price}} kr</h2>
 </article>
   
 </template>
@@ -22,6 +32,12 @@ methods: {
     addToCart(){
         this.$store.commit('addProductToCart', this.article)
     },
+    increaseAmount(){
+        this.amount++
+    },
+    reduceAmount(){
+        this.amount--
+    }
 }
 
 
@@ -33,44 +49,18 @@ methods: {
 <style lang="scss" scoped>
 @import "@/assets/scss/_variables.scss";
 
-p, h2 {
-    margin:0;
-    text-align: left
-}
-
-h2 {
-    white-space: nowrap;
-}
-
-.menu-article{
+.text-wrapper {
+    padding: 0 1rem 0 1rem;
     display: flex;
     justify-content: space-between;
-    box-sizing: border-box;
-    margin-bottom: 20px;
-
-    button.add-to-cart{
-        min-width: 2rem;
-        width: 2rem;
-        height: 2rem;
-        // min-height: 2rem;
-        background-color: $secondary-color;
-        border: none;
-        border-radius: 50%;
-        margin: 0 20px 0 0;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-
-        img{
-            width:60%;
-        }
-    }
-
-    .text-wrapper{
-        flex-grow: 1;
-        
-    }
+    align-items: center;
 }
-
-
+.article-and-price {
+    display: flex;
+    flex-direction: column;
+    text-align: left;
+}
+.article-and-price > h2, p {
+    margin: 0;
+}
 </style>

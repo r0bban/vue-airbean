@@ -26,10 +26,16 @@
         :article="article"
         v:style="margin-bottom: 10px"
       />
+      <div class="total-amount">
+    <h2>Total</h2>
+    <h2>{{totalAmount}} kr</h2>
     </div>
-      </div>
+    <p>inkl mom + drönarleverans</p>
+    <button class="myButton">Take my money!</button>
     </div>
-  </div>
+    </div>
+    </div>
+    </div>
 </template>
 <script>
 import OrderArticle from "@/components/OrderArticle";
@@ -192,6 +198,18 @@ export default {
     border: 0 solid white;
     border-radius: 5px;
   }
+  .amount {
+    display: flex;
+    flex-direction: column;
+  }
+  .myButton {
+    margin: 1rem;
+  }
+  .total-amount {
+    padding: 0 1rem 0 1rem;
+    display: flex;
+    justify-content: space-between;
+}
 }
 
 @media only screen and (min-width: 640px) {

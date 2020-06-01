@@ -13,3 +13,4 @@ export default {
     return fetch(menu.menu, 1000) // wait 1s before returning posts
   }
 }
+
