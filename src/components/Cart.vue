@@ -1,13 +1,13 @@
 <template>
   <div class="cart-wrapper">
-    <button v-if="!showOrder" v-on:click="toggleShowOrder" class="cart-btn-minimized">
+    <button v-if="!displayOrder" v-on:click="toggleShowOrder" class="cart-btn-minimized">
       <div class="cart-amount">
         <p class="amount">{{orderQuant}}</p>
       </div>
       <img src="@/assets/graphics/bag.svg" alt="Show cart" />
     </button>
 
-    <div v-if="showOrder" class="cart-lightbox-background">
+    <div v-if="displayOrder" class="cart-lightbox-background">
       <div class="btn-wrapper">
         <button v-on:click="toggleShowOrder" class="cart-btn">
           <div class="cart-amount">
@@ -15,36 +15,40 @@
           </div>
           <img src="@/assets/graphics/bag.svg" alt="Show cart" />
         </button>
-        <div v-if="showOrder" class="arrow-up"></div>
+        <div v-if="displayOrder" class="arrow-up"></div>
       </div>
-      <div v-if="showOrder" class="order-wrapper">
+      <div v-if="displayOrder" class="order-wrapper">
         <h1>Din beställning</h1>
         <div class="list-wrapper">
-      <orderArticle
-        v-for="article in orderArticles"
-        :key="article.id"
-        :article="article"
-        v:style="margin-bottom: 10px"
-      />
-      <div class="total-amount">
-    <h2>Total</h2>
-    <h2>{{totalAmount}} kr</h2>
+          <orderArticle
+            v-for="article in orderArticles"
+            :key="article.id"
+            :article="article"
+            v:style="margin-bottom: 10px"
+          />
+          <div class="total-amount">
+            <h2>Total</h2>
+            <h2>{{orderAmount}} kr</h2>
+          </div>
+          <p>inkl moms + drönarleverans</p>
+          <button id="confirm-order" class="myButton dark">Take my money!</button>
+        </div>
+      </div>
     </div>
-    <p>inkl mom + drönarleverans</p>
-    <button class="myButton">Take my money!</button>
-    </div>
-    </div>
-    </div>
-    </div>
+  </div>
 </template>
 <script>
 import OrderArticle from "@/components/OrderArticle";
 
 export default {
   components: {
-    OrderArticle: OrderArticle,
+    OrderArticle: OrderArticle
   },
-  data: () => ({}),
+  data() {
+    return {
+      displayOrder: this.showOrder,
+    };
+  },
 
   props: {
     showOrder: Boolean
@@ -53,13 +57,23 @@ export default {
     orderArticles() {
       return this.$store.state.cart;
     },
-    orderQuant(){
-      return this.$store.state.cart.length;
+    orderQuant() {
+      return this.$store.state.totalOrderQuantity;
+    },
+    orderAmount() {
+      return this.$store.state.totalOrderAmount;
+    },
+    totalAmount() {
+      let totalAmount = 0;
+      this.$store.state.cart.forEach(article => {
+        totalAmount += article.price;
+      });
+      return totalAmount;
     }
   },
   methods: {
     toggleShowOrder() {
-      this.showOrder = !this.showOrder;
+      this.displayOrder = !this.displayOrder;
     }
   }
 };
@@ -193,23 +207,27 @@ export default {
     bottom: 0.9rem;
     border: 0 solid black;
     background: white;
-    // box-sizing: border-box;
+    box-sizing: border-box;
     max-width: 640px;
     border: 0 solid white;
     border-radius: 5px;
+    padding: 0 20px 0 20px;
+
+    .amount {
+      display: flex;
+      flex-direction: column;
+    }
+    #confirm-order {
+      margin-bottom: 1rem;
+      padding-left: 1.5rem;
+      padding-right: 1.5rem;
+    }
+    .total-amount {
+      // padding: 0 1rem 0 1rem;
+      display: flex;
+      justify-content: space-between;
+    }
   }
-  .amount {
-    display: flex;
-    flex-direction: column;
-  }
-  .myButton {
-    margin: 1rem;
-  }
-  .total-amount {
-    padding: 0 1rem 0 1rem;
-    display: flex;
-    justify-content: space-between;
-}
 }
 
 @media only screen and (min-width: 640px) {

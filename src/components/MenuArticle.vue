@@ -23,9 +23,6 @@ methods: {
         this.$store.commit('addProductToCart', this.article)
     },
 }
-
-
-
 }
 </script>
 

@@ -19,7 +19,8 @@ export default {
 <style lang="scss">
 @import "./assets/scss/_variables.scss";
 
-body, html {
+body,
+html {
   margin: 0;
   padding: 0;
   min-width: 320px;
@@ -35,29 +36,24 @@ body, html {
   margin: 0;
   position: relative;
 
-  p{
+  p {
     font-family: $secondary-font;
   }
 
-  .myButton{
+  .myButton {
     padding-left: 2.5rem;
     padding-right: 2.5rem;
     height: 3rem;
     border: 0;
     border-radius: 50px;
-    font: 700 1.5rem $secondary-font;
-    color: $secondary-color;
-    background: $primary-color; 
+    font: 700 1.5rem $primary-font;
+    color: black;
+    background: white;
 
-    
-
-  }
-  .dark:not(.add-to-cart) {
-      color: $primary-color;
+    &.dark {
+      color: white;
       background: $secondary-color;
     }
-  
-  
-  
+  }
 }
 </style>

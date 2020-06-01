@@ -1,66 +1,107 @@
 <template>
-<article class="order-article">
-    <button class="add-to-cart"
-    v-on:click="addToCart">
-        <img src="@/assets/graphics/add.svg" alt="Add to cart">
-    </button>
+  <article class="order-article">
     <div class="text-wrapper">
-        <div class="article-and-price">
-            <h2 class="article-title">{{article.title}}</h2>
-            <p class="article-price">{{article.price}} kr</p>
-        </div>
-        <div class="amount">
-            <button class="increase-amount" v-on:click="increaseAmount">
-                <img src="@/assets/graphics/arrow-up.svg" alt="arrow-up">
-            </button>
-            <p>{{amount}}</p>
-            <button class="reduce-amount" v-on:click="reduceAmount">
-                <img src="@/assets/graphics/arrow-down.svg" alt="arrow-down">
-            </button>
-        </div>
+      <div class="article-and-price">
+        <h2 class="article-title">{{article.title}}</h2>
+        <p class="article-price">{{article.price}} kr</p>
+      </div>
     </div>
-</article>
-  
+    <div class="amount-wrapper">
+      <button class="item-amount increase" v-on:click="increaseQuant">
+        <img class="arrow" src="@/assets/graphics/arrow-up.svg" alt="arrow-up" />
+      </button>
+      <p class="amount">{{quantity}}</p>
+      <button class="item-amount decrease" v-on:click="reduceQuant">
+        <img class="arrow" src="@/assets/graphics/arrow-down.svg" alt="arrow-down" />
+      </button>
+    </div>
+  </article>
 </template>
 
 <script>
 export default {
-props:{
+  props: {
     article: Object
-},
-methods: {
-    addToCart(){
-        this.$store.commit('addProductToCart', this.article)
+  },
+  data() {
+    return {
+      quantity: this.article.quantity
+    };
+  },
+  methods: {
+    addToCart() {
+      this.$store.commit("addProductToCart", this.article);
     },
-    increaseAmount(){
-        this.amount++
+    increaseQuant() {
+      this.quantity = this.quantity + 1;
+      this.$store.commit("increaseQuantOrderProd", this.article);
     },
-    reduceAmount(){
-        this.amount--
+    reduceQuant() {
+      this.quantity = this.quantity - 1;
+      this.$store.commit("reduceQuantOrderProd", this.article);
     }
-}
-
-
-
-}
+  },
+  computed: {
+    // orderArticle() {
+    //   return this.article
+    // },
+  }
+};
 </script>
 
 
 <style lang="scss" scoped>
 @import "@/assets/scss/_variables.scss";
 
-.text-wrapper {
-    padding: 0 1rem 0 1rem;
+p,
+h2 {
+  margin: 0;
+  text-align: left;
+}
+
+h2.article-title {
+  padding-right: 0.3rem;
+}
+
+h2.article-price {
+  white-space: nowrap;
+  align-self: flex-start;
+}
+
+.order-article {
+  display: flex;
+  justify-content: space-between;
+  box-sizing: border-box;
+  margin-bottom: 20px;
+  align-items: center;
+
+  .text-wrapper {
+    flex-grow: 1;
+  }
+
+  .amount-wrapper {
+    margin: 0 0 0 0;
     display: flex;
-    justify-content: space-between;
     align-items: center;
-}
-.article-and-price {
-    display: flex;
+    justify-content: center;
     flex-direction: column;
-    text-align: left;
-}
-.article-and-price > h2, p {
-    margin: 0;
+
+    button.item-amount {
+      background: none;
+      border: none;
+      margin: 0 0 0 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+
+      img.arrow {
+        height: 0.5rem;
+      }
+    }
+
+    p.amount {
+      font-weight: 650;
+    }
+  }
 }
 </style>

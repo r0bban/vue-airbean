@@ -9,7 +9,7 @@
         <h1>Din beställning är på väg!</h1>
         <p><strong>{{getDeliverytime}}</strong> minuter</p>
       </div>
-      <button class="coolBtn myButton" @click="gotoProfile">Ok, cool!</button>
+      <button class="myButton" @click="gotoProfile">Ok, cool!</button>
     </div>
   </div>
 </template>
@@ -49,10 +49,6 @@ export default {
   flex-direction: column;
   align-items: center;
   justify-content: space-around;
-}
-.coolBtn {
-  
-  
 }
 .ordernumberAndIcon img {
   margin: 2rem 0 0 0;
