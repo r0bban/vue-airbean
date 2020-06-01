@@ -2,14 +2,23 @@
   <div class="status">
     <div class="status-container">
       <div class="ordernumberAndIcon">
-        <p>Ordernummer <strong>{{getOrdernumber}}</strong></p>
-        <img src="@/assets/graphics/drone.svg" alt="drone">
+        <p v-if="currentOrder">
+          Ordernummer
+          <strong>#{{currentOrder.id}}</strong>
+        </p>
+        <img src="@/assets/graphics/drone.svg" alt="drone" />
       </div>
-      <div class="deliveryTime">
+      <div v-if="currentOrder" class="deliveryTime">
         <h1>Din beställning är på väg!</h1>
-        <p><strong>{{getDeliverytime}}</strong> minuter</p>
+        <p>
+          <strong>{{getETA}}</strong> minuter
+        </p>
       </div>
-      <button class="myButton" @click="gotoProfile">Ok, cool!</button>
+      <div>
+      <button v-if="currentOrder" class="myButton" @click="gotoProfile">Ok, cool!</button>
+      <h1 v-if="!currentOrder">Ops, hittade ingen pågående order!</h1>
+      <button v-if="!currentOrder" class="myButton" @click="gotoProfile">Lägg en order!</button>
+      </div>
     </div>
   </div>
 </template>
@@ -17,18 +26,28 @@
 export default {
   name: "Status",
   methods: {
-    gotoProfile(){
-      this.$router.push("/profile")
+    gotoProfile() {
+      this.$router.push("/profile");
     }
   },
   computed: {
-    getOrdernumber() {
-      return "#12DV23F"
-    },
-    getDeliverytime(){
+    // getOrdernumber() {
+    //   return "#12DV23F";
+    // },
+    fakeETA() {
       return Math.floor(Math.random() * 15) + 5;
+    },
+    getETA() {
+      let eta = new Date(this.$store.state.confirmedOrder.eta);
+      let now = new Date();
+      let diff = (eta - now);
+      diff = Math.round((diff/1000)/60)
+      return diff;
+    },
+    currentOrder(){
+      return this.$store.state.confirmedOrder
     }
-  }
+  },
 };
 </script>
 
@@ -37,7 +56,7 @@ export default {
   color: white;
   padding: 1rem;
   min-height: 100vh;
-  background: rgb(225,92,69);
+  background: rgb(225, 92, 69);
   display: flex;
   flex-direction: column;
   justify-content: center;

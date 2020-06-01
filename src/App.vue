@@ -11,7 +11,19 @@ export default {
   components: {
     Navbar
   },
-  data: () => ({})
+  data: () => ({}),
+  async beforeMount() {
+    if (sessionStorage.getItem("currentOrder")) {
+      const sessionOrder = JSON.parse(sessionStorage.getItem("currentOrder"));
+      this.$store.commit("setConfirmedOrder", sessionOrder);
+    }
+    if (localStorage.getItem("UserId")) {
+      const localStoredUserId = localStorage.getItem("UserId");
+      console.log(localStoredUserId)
+      await this.$store.dispatch("setUserProfileById", localStoredUserId);
+    }
+    // localStorage.getItem("userId");
+  }
 };
 </script>
 
@@ -41,8 +53,8 @@ html {
   }
 
   .myButton {
-    padding-left: 2.5rem;
-    padding-right: 2.5rem;
+    padding-left: 1.8rem;
+    padding-right: 1.8rem;
     height: 3rem;
     border: 0;
     border-radius: 50px;

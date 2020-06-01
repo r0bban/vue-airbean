@@ -11,7 +11,7 @@
     <div class="input-form">
       <p class="name">Name</p>
 
-      <input type="text" class="name" v-model="newUser.name" />
+      <input type="text" class="name" v-model="newUser.nickName" />
 
       <p class="email">Email</p>
       <input type="text" class="email" v-model="newUser.email" />
@@ -32,16 +32,18 @@ export default {
   data() {
     return {
         newUser: {
-            name: "",
+            firstName: "",
+            lastName: "",
+            nickName: "",
             email: "",
-
         },
     };
   },
 
   methods: {
-    handleRequest() {
-        this.$emit('login', this.newUser)
+    async handleRequest() {
+        this.$emit('login', this.newUser);
+        await this.$store.dispatch("registerNewUser", this.newUser);
     }
   }
 };

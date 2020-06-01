@@ -31,7 +31,15 @@
             <h2>{{orderAmount}} kr</h2>
           </div>
           <p>inkl moms + drönarleverans</p>
-          <button id="confirm-order" class="myButton dark">Take my money!</button>
+          <button
+            id="confirm-order"
+            class="myButton dark"
+            :class="{loading : requestingOrder}"
+            v-on:click="placeOrder"
+          >
+            <span v-if="!requestingOrder">Take my money!</span>
+            <img class="loader" src="@/assets/graphics/loader.png" v-if="requestingOrder" />
+          </button>
         </div>
       </div>
     </div>
@@ -47,6 +55,7 @@ export default {
   data() {
     return {
       displayOrder: this.showOrder,
+      requestingOrder: false
     };
   },
 
@@ -62,18 +71,20 @@ export default {
     },
     orderAmount() {
       return this.$store.state.totalOrderAmount;
-    },
-    totalAmount() {
-      let totalAmount = 0;
-      this.$store.state.cart.forEach(article => {
-        totalAmount += article.price;
-      });
-      return totalAmount;
     }
   },
   methods: {
     toggleShowOrder() {
       this.displayOrder = !this.displayOrder;
+    },
+    async placeOrder() {
+      if (!this.requestingOrder) {
+        this.requestingOrder = true;
+        await this.$store.dispatch("requestOrder");
+        this.requestingOrder = false;
+        this.toggleShowOrder()
+        this.$router.push({name: "Status"})
+      }
     }
   }
 };
@@ -221,6 +232,13 @@ export default {
       margin-bottom: 1rem;
       padding-left: 1.5rem;
       padding-right: 1.5rem;
+      width: 100%;
+      &.loading {
+        background: $secondary-color-inactive;
+      }
+      .loader {
+        height: 2rem;
+      }
     }
     .total-amount {
       // padding: 0 1rem 0 1rem;
