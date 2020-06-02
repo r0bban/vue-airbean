@@ -1,9 +1,6 @@
 # Grupparbete - AirBean - Smart Rangers
 
 **Niklas Palm - Robert Pettersson Svensson - Joel Ståldahl**
-**AirBEan Backend repo:** https://github.com/r0bban/air-bean-backend
-Backend har maven-dependencies. Enda förberedelser är att importera dependencies och starta en mysql-db/scheme som heter "airbean_db". Nuvarande pass/lösen är root/root. Detta kan annars konfigureras in i application.properties i projeketets rot-mapp.
-
 
 **AirBEan Backend repo:** https://github.com/r0bban/air-bean-backend
 Backend har maven-dependencies. Enda förberedelser är att importera dependencies och starta en mysql-db/scheme som heter "airbean_db". Nuvarande pass/lösen är root/root. Detta kan annars konfigureras in i application.properties i projeketets rot-mapp.
