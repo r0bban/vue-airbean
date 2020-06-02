@@ -11,12 +11,10 @@
       </div>
 
       <div class="overlay-content">
-        <router-link to="/landing">Landing</router-link>_______
-        <router-link tag="a" to="/about">About</router-link>_______
-        <router-link tag="a" to="/menu">Menu</router-link>_______
-        <router-link tag="a" to="/cart">Shopping Cart</router-link>_______
-        <router-link tag="a" to="/status">Order Status</router-link>_______
-        <router-link tag="a" to="/Profile">Profile</router-link>
+        <router-link tag="a" to="/menu">Meny</router-link>_______
+        <router-link tag="a" to="/about">Vårt kaffe</router-link>_______
+        <router-link tag="a" to="/Profile">Min profil</router-link>_______
+        <router-link tag="a" to="/status">Order Status</router-link>
       </div>
     </div>
   </div>

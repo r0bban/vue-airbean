@@ -44,6 +44,9 @@ export default {
     async handleRequest() {
         this.$emit('login', this.newUser);
         await this.$store.dispatch("registerNewUser", this.newUser);
+        if(this.$store.state.confirmedOrder){
+        await this.$store.dispatch("attachUserToConfirmedOrder");
+        }
     }
   }
 };

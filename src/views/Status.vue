@@ -17,7 +17,7 @@
       <div>
       <button v-if="currentOrder" class="myButton" @click="gotoProfile">Ok, cool!</button>
       <h1 v-if="!currentOrder">Ops, hittade ingen pågående order!</h1>
-      <button v-if="!currentOrder" class="myButton" @click="gotoProfile">Lägg en order!</button>
+      <button v-if="!currentOrder" class="myButton" @click="gotoMenu">Lägg en order!</button>
       </div>
     </div>
   </div>
@@ -28,6 +28,9 @@ export default {
   methods: {
     gotoProfile() {
       this.$router.push("/profile");
+    },
+    gotoMenu() {
+      this.$router.push("/menu");
     }
   },
   computed: {

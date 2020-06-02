@@ -42,13 +42,13 @@ export default new Vuex.Store({
       state.totalOrderQuantity += 1;
       state.totalOrderAmount += orderArticle.price;
     },
-    setConfirmedOrder(state, newConfirmedOrder){
+    setConfirmedOrder(state, newConfirmedOrder) {
       state.confirmedOrder = newConfirmedOrder
     },
     sessionStoreCurrentOrder(state) {
       sessionStorage.setItem("currentOrder", JSON.stringify(state.confirmedOrder));
     },
-    setCurrentUser(state, newCurrentuser){
+    setCurrentUser(state, newCurrentuser) {
       state.currentUser = newCurrentuser
     },
     localStoreUserId(state, newUserProfile) {
@@ -62,7 +62,7 @@ export default new Vuex.Store({
         context.commit('setMenuList', updatedMenu)
       }
     },
-    clearCart(context){
+    clearCart(context) {
       context.state.cart = [];
       context.state.totalOrderAmount = 0;
       context.state.totalOrderQuantity = 0;
@@ -70,11 +70,19 @@ export default new Vuex.Store({
     },
     async requestOrder(context) {
       if (context.state.cart.length > 0) {
+
         let orderRequestBody = {
           orderedProducts: [],
           isUserOrder: false,
           userId: ""
         };
+
+        if(context.state.currentUser){
+          orderRequestBody.isUserOrder = true;
+        }
+        if(context.state.currentUser){
+          orderRequestBody.userId = context.state.currentUser.id;
+        }
 
         context.state.cart.forEach(cartArticle => {
           let orderItem = {}
@@ -82,23 +90,29 @@ export default new Vuex.Store({
           orderItem.quantity = cartArticle.quantity;
           orderRequestBody.orderedProducts.push(orderItem);
         });
-        
+
         const orderCopy = await API.postOrderRequest(orderRequestBody);
-        context.commit("setConfirmedOrder",orderCopy);
+        context.commit("setConfirmedOrder", orderCopy);
         context.commit("sessionStoreCurrentOrder");
         context.dispatch("clearCart");
         console.log(orderCopy);
-      } else{console.log("Attempt to place order, but cart is empty")}
+      } else { console.log("Attempt to place order, but cart is empty") }
     },
-    async registerNewUser(context, newUser){
+    async registerNewUser(context, newUser) {
       const newUserProfile = await API.postNewUserRequest(newUser);
       context.commit("setCurrentUser", newUserProfile)
       context.commit("localStoreUserId", newUserProfile)
       console.log(newUserProfile);
     },
-    async setUserProfileById(context, userId){
+    async setUserProfileById(context, userId) {
       const currentUserProfile = await API.fetchUserProfileById(userId);
       context.commit("setCurrentUser", currentUserProfile);
+    },
+    async attachUserToConfirmedOrder(context) {
+      const currentUser = context.state.currentUser;
+      const confirmedOrder = context.state.confirmedOrder;
+      const updatedOrder = await API.putNewUserToOrderRequest(currentUser.id, confirmedOrder.id);
+      context.commit("setConfirmedOrder", updatedOrder);
     }
   },
   modules: {

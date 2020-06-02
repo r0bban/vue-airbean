@@ -6,8 +6,8 @@
     </div>
     <section class="order-history" v-show="this.loggedIn">
       <img src="../assets/graphics/placeholder-person.svg" alt />
-      <h1>{{this.user.name}}</h1>
-      <h2>{{this.user.email}}</h2>
+      <h1>{{this.currenUser.nickName}}</h1>
+      <h2>{{this.currenUser.email}}</h2>
 
       <article class="history">
         <h1 class="heading">Orderhistorik</h1>
@@ -37,6 +37,11 @@ export default {
   components: {
     Top,
     LoginForm
+  },
+  computed: {
+    currenUser() {
+      return this.$store.state.currentUser;
+    }
   },
   data: () => ({
     user: {
@@ -87,7 +92,7 @@ export default {
           name: "#AB1444482323X",
           amount: "893 kr",
           date: "20/02/21"
-        },
+        }
       ]
     },
     loggedIn: false //change to true during development
@@ -97,6 +102,11 @@ export default {
     test(user) {
       // document.getElementById("login").style.height = "0%";
       this.user = user;
+      this.loggedIn = true;
+    }
+  },
+  beforeMount() {
+    if (this.$store.state.currentUser) {
       this.loggedIn = true;
     }
   }
@@ -111,7 +121,7 @@ export default {
   color: $secondary-color;
   min-height: 100vh;
   padding-block-end: 5rem;
-  
+
   .transition {
     height: 100%;
     position: fixed;
@@ -195,7 +205,6 @@ export default {
           font-weight: 700;
           margin: 0;
           margin-top: 0.3rem;
-          
         }
       }
     }
