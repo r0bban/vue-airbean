@@ -1,35 +1,70 @@
 <template>
   <div id="app">
-    <div id="nav">
-      <router-link to="/landing">Landing</router-link> |
-      <router-link to="/about">About</router-link> |
-      <router-link to="/menu">Menu</router-link> |
-      <router-link to="/cart">Shopping Cart</router-link> |
-      <router-link to="/status">Order Status</router-link> |
-      <router-link to="/Profile">Profile</router-link> 
-    </div>
-    <router-view/>
+    <Navbar />
+    <router-view />
   </div>
 </template>
 
+<script>
+import Navbar from "./components/Navbar";
+export default {
+  components: {
+    Navbar
+  },
+  data: () => ({}),
+  async beforeMount() {
+    if (sessionStorage.getItem("currentOrder")) {
+      const sessionOrder = JSON.parse(sessionStorage.getItem("currentOrder"));
+      this.$store.commit("setConfirmedOrder", sessionOrder);
+    }
+    if (localStorage.getItem("UserId")) {
+      const localStoredUserId = localStorage.getItem("UserId");
+      console.log(localStoredUserId)
+      await this.$store.dispatch("setUserProfileById", localStoredUserId);
+    }
+    // localStorage.getItem("userId");
+  }
+};
+</script>
+
+
 <style lang="scss">
+@import "./assets/scss/_variables.scss";
+
+body,
+html {
+  margin: 0;
+  padding: 0;
+  min-width: 320px;
+}
+
 #app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
+  font-family: $primary-font;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
   color: #2c3e50;
-}
+  padding: 0;
+  margin: 0;
+  position: relative;
 
-#nav {
-  padding: 30px;
+  p {
+    font-family: $secondary-font;
+  }
 
-  a {
-    font-weight: bold;
-    color: #2c3e50;
+  .myButton {
+    padding-left: 1.8rem;
+    padding-right: 1.8rem;
+    height: 3rem;
+    border: 0;
+    border-radius: 50px;
+    font: 700 1.5rem $primary-font;
+    color: black;
+    background: white;
 
-    &.router-link-exact-active {
-      color: #42b983;
+    &.dark {
+      color: white;
+      background: $secondary-color;
     }
   }
 }
